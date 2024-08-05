@@ -11,16 +11,8 @@ This project uses K-Means clustering to segment customers based on their spendin
 - `visualization.py`: Functions for visualizing the clusters and evaluation metrics.
 - `main.py`: The main script that ties all the modules together.
 
-## Setup Instructions
-
 ### Prerequisites
 
 - Python 3.6 or higher
 - Required Python packages (can be installed via `requirements.txt`)
 
-### Installation
-
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/YourUsername/YourRepository.git
-   cd YourRepository
