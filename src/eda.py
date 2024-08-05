@@ -1,12 +1,8 @@
 
 
-import pandas as pd
-import matplotlib.pyplot as plt
 import seaborn as sns
+import matplotlib.pyplot as plt
 
-def eda(df: pd.DataFrame):
-    print(df.head())
-    print(df.info())
-    print(df.describe())
-    sns.pairplot(df)
+def plot_pairplot(df):
+    sns.pairplot(df[['Age', 'Annual_Income', 'Spending_Score']])
     plt.show()

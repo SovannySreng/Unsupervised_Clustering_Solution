@@ -1,22 +1,26 @@
 
-import pandas as pd
+# src/visualization.py
+
 import matplotlib.pyplot as plt
 import seaborn as sns
+import pandas as pd
 
-def plot_clusters(df: pd.DataFrame, model):
-    labels = model.labels_
-    df['Cluster'] = labels
-    sns.pairplot(df, hue='Cluster', palette='viridis')
+def plot_clusters(df):
+    sns.scatterplot(x='Annual_Income', y='Spending_Score', data=df, hue='Cluster', palette='colorblind')
     plt.show()
 
-def plot_histograms(df: pd.DataFrame, num_cols: list):
-    df[num_cols].hist(figsize=(14, 14))
+def plot_elbow(k_values, WCSS):
+    wss = pd.DataFrame({'cluster': k_values, 'WSS_Score': WCSS})
+    wss.plot(x='cluster', y='WSS_Score')
+    plt.xlabel('No. of clusters')
+    plt.ylabel('WSS Score')
+    plt.title('Elbow Plot')
     plt.show()
 
-def plot_categorical_distribution(df: pd.DataFrame, cat_cols: list):
-    for col in cat_cols:
-        if col != 'Cluster':  # Assuming 'Cluster' is the name of the cluster column
-            pd.crosstab(df[col], df['Cluster'], normalize='index').plot(kind='bar', figsize=(8, 4), stacked=True)
-            plt.ylabel('Cluster Percentage')
-            plt.title(f'Distribution of {col} by Cluster')
-            plt.show()
+def plot_silhouette(k_values, silhouette_scores):
+    wss = pd.DataFrame({'cluster': k_values, 'Silhouette_Score': silhouette_scores})
+    wss.plot(x='cluster', y='Silhouette_Score')
+    plt.xlabel('No. of clusters')
+    plt.ylabel('Silhouette Score')
+    plt.title('Silhouette Plot')
+    plt.show()
